@@ -1,39 +1,74 @@
-### Shorty: URL Shortener using Spring Boot
+# Shorty: URL Shortener using Spring Boot
 
-**Description:**
-Shorty is a URL shortening application built using Spring Boot framework. It allows users to shorten long URLs into shorter, more manageable links. This README provides an overview of the project structure and dependencies used.
+A robust, lightweight URL shortening application built using the Spring Boot framework. Shorty allows users to convert long, complex URLs into clean, manageable links, complete with automatically generated QR codes, link usage analytics, and email notification capabilities.
 
-**Project Structure:**
-- **.mvn/wrapper:** Contains Maven wrapper files, enabling the project to be built using Maven without needing to install it globally.
-- **.settings:** Eclipse IDE settings directory.
-- **src:** Contains the source code of the application, including Java files, JSP files, and other resources.
-- **target:** Default output directory for compiled classes and packaged JAR or WAR files.
-- **.classpath:** Eclipse classpath file.
-- **.factorypath:** Eclipse factory path file.
-- **.project:** Eclipse project file.
-- **HELP.md:** Markdown file providing help and guidance for the project.
-- **mvnw:** Maven wrapper script for Unix-based systems.
-- **mvnw.cmd:** Maven wrapper script for Windows-based systems.
-- **pom.xml:** Project Object Model (POM) file defining project dependencies, configurations, and other settings.
+---
 
-**Dependencies:**
-- **Spring Boot Starter Actuator:** Provides production-ready features to monitor and manage the application.
-- **Spring Boot Starter Data JPA:** Simplifies the implementation of JPA-based data access layers.
-- **Spring Boot Starter Mail:** Provides email sending capabilities.
-- **Spring Boot Starter Web:** Starter for building web applications using Spring MVC.
-- **Jakarta Validation API:** Provides validation capabilities for Java applications.
-- **Spring Boot DevTools:** Provides development-time features to improve productivity.
-- **MySQL Connector/J:** JDBC driver for connecting to MySQL databases.
-- **Lombok:** Library to reduce boilerplate code by automatically generating getter, setter, and other methods.
-- **Spring Boot Starter Tomcat:** Starter for using Tomcat as the embedded servlet container.
-- **Spring Boot Starter Test:** Starter for testing Spring Boot applications.
-- **Tomcat Jasper:** Required for JSP support in embedded Tomcat.
-- **Google ZXing Core and JavaSE:** Libraries for generating QR codes.
-- **Jakarta Servlet JSP JSTL:** Jakarta EE implementation of the JSP Standard Tag Library.
+## Features
 
-**Build Configuration:**
-- **spring-boot-maven-plugin:** Maven plugin for packaging Spring Boot applications into executable JAR or WAR files.
+- **Link Shortening**: Convert long URLs into compact short links.
+- **Custom Backhalves**: Choose your own custom alias/backhalf (e.g., `shorty.link/aiml-roadmap`) with support for alphanumeric characters, hyphens, and underscores.
+- **QR Code Generation**: Automatically generate and download custom QR codes for every shortened link (powered by Google ZXing).
+- **Email Integration**: Integrated mail notification service for account and link alerts.
+- **Database Persistence**: Powered by Hibernate and JPA with MySQL.
+- **DevOps Friendly**: Multi-environment config and easy database provisioning using Docker.
 
-**Note:** Ensure JDK 21 or later is installed on your system before building and running the application.
+---
 
-For more detailed information on the project setup, configurations, and usage, refer to the project's source code and documentation.
+## Project Structure
+
+- **`src/main/java/com/yousuf/shorty`**: Contains the source code (Controllers, Models, Repositories, and Services).
+- **`src/main/webapp`**: Front-end JSP files, CSS, JS, and media assets.
+- **`pom.xml`**: Maven configurations, dependencies, and plugin declarations.
+- **`mvnw` / `mvnw.cmd`**: Maven Wrapper files for platform-independent compilation and builds.
+
+---
+
+## Technical Stack & Dependencies
+
+- **Core Framework**: Spring Boot 3.2.0
+- **Java Version**: JDK 21
+- **Database & ORM**: Spring Boot Data JPA, Hibernate, MySQL Connector/J
+- **Templating Engine**: Embedded Tomcat, Tomcat Jasper, Jakarta Servlet JSP JSTL
+- **Utility Libraries**: Lombok, Jakarta Validation API
+- **QR Code Generation**: Google ZXing (Core & JavaSE)
+- **Monitoring & DevTools**: Spring Boot Actuator, Spring Boot DevTools
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Java**: JDK 21 or later
+- **Docker**: For running a local database instance easily
+
+### 1. Database Setup (MySQL via Docker)
+
+Shorty is pre-configured to connect to a MySQL database named `milliurl` on port `3306`. Run the following command to spin up a compatible MySQL container:
+
+```powershell
+docker run --name shorty-mysql -e MYSQL_ROOT_PASSWORD=Jasmitha@1 -e MYSQL_DATABASE=milliurl -p 3306:3306 -d mysql:8.0
+```
+
+### 2. Run the Application
+
+Navigate to the project root directory and start the Spring Boot server using the Maven wrapper:
+
+```powershell
+# Windows
+.\mvnw spring-boot:run
+
+# Linux / macOS
+./mvnw spring-boot:run
+```
+
+Once started, open your browser and access the application at:
+[http://localhost:8080](http://localhost:8080)
+
+---
+
+## Authors & License
+
+Maintained and customized by **Yousuf-Wizdan**.
+Licensed under the MIT License.
